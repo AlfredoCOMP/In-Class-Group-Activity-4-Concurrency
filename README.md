@@ -41,3 +41,6 @@ scala> c.printProgress()
 989
 1001
 ```
+
+Group Members:
+  Alfredo Banuelos and Aiden Vega
