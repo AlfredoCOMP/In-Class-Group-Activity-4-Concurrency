@@ -16,6 +16,17 @@ How many elements does f2 contain (when viewed as a container, regardless of the
 	It contains one element when viewed as a container.
 
 How do the results of running c.printProgress() and c.printResults() change over time?
+	printProgress() prints how many result futures have completed, followed by
+	how many fail-safe result futures have completed. The counts generally
+	increase until they reach the number of requests. A completed request may
+	have succeeded, returned a non-200 status, or failed.
+
+	printResults() initially prints None while the aggregate futures are still
+	running. Once complete, f2 is Some(Success(count)) if all original results
+	succeeded, or Some(Failure(...)) if any failed. f4 can still return a
+	Some(Success(count)) because its individual failures are recovered as false.
 
 What else did you find noteworthy or worth wondering about?
+	A failed request still counts as completed in printProgress(), so progress
+	does not necessarily mean successful responses.
 
